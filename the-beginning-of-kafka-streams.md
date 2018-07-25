@@ -6,10 +6,6 @@
 
 {% embed data="{\"url\":\"https://gist.github.com/wojda/7071eada07753b9bc6b8a8a2e45b000b\#file-kafka-streams-from-scratch-vanilla-consumer-and-producer-scala\",\"type\":\"rich\",\"title\":\"Kafka Streams from scratch - vanilla consumer and producer.scala\",\"description\":\"Kafka Streams from scratch - vanilla consumer and producer.scala · GitHub\",\"icon\":{\"type\":\"icon\",\"url\":\"https://gist.github.com/fluidicon.png\",\"aspectRatio\":0},\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"https://avatars3.githubusercontent.com/u/3869128?s=400&v=4\",\"width\":400,\"height\":400,\"aspectRatio\":1},\"embed\":{\"type\":\"reader\",\"html\":\"<script type=\\\"text/javascript\\\" src=\\\"https://gist.github.com/7071eada07753b9bc6b8a8a2e45b000b.js\\\"></script>\",\"aspectRatio\":0},\"caption\":\"Consume-transform-produce implemented with vanilla Kafka clients\"}" %}
 
-#### Scalability, Resiliency, Fault tolerance
-
-Scalability - partitioning \(Kafka Concept\). Resiliency - consumer rebalancing \(Kafka Concept\). Fault tolerance - commit offset at the end, consumer rebalancing.
-
 ### KIP-28 Add a processor client
 
 KIP -  [Kafka Improvment Proposal](https://cwiki.apache.org/confluence/display/KAFKA/Kafka+Improvement+Proposals). Every new feature, every public API change must have KIP so Kafka community can discuss pros and cons of it. [KIP-28 Add a processor client](https://cwiki.apache.org/confluence/display/KAFKA/KIP-28+-+Add+a+processor+client) was a KIP that started Kafka Streams.
@@ -77,7 +73,11 @@ Wiring of the processor, topology and KafkaStreams.
 
 ### Scalability, Resiliency, Fault tolerance
 
-Scalability - partitions
+Scalability - partitioning \(Kafka Concept\). 
+
+Resiliency - consumer rebalancing \(Kafka Concept\). 
+
+Fault tolerance - commit offset at the end, consumer rebalancing.
 
 Issue: How to implement backpressure? Solution: Consumer.pause\(partition, topic\) method && internal buffer.
 
@@ -184,6 +184,7 @@ The beuty of Kafka Streams is simplicity. The library itself is very primitive a
 **The Ugly**
 
 1. Async calls - blocking calls
+   1. \*\*\*\*[**KIP-311: Async processing with dynamic scheduling in Kafka Streams**](https://cwiki.apache.org/confluence/display/KAFKA/KIP-311%3A+Async+processing+with+dynamic+scheduling+in+Kafka+Streams)\*\*\*\*
 2. Maintainability 
    1. [changing topology is a breaking change](https://stackoverflow.com/a/48119828)
    2. [Restore topic names contain operation number](https://issues.apache.org/jira/browse/KAFKA-6273)
